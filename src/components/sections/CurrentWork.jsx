@@ -1,7 +1,7 @@
 import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
-import { currentWork } from "../../data/currentWork"
+import { currentWork } from "../../data/currentwork"
 
 export default function CurrentWork() {
   return (
