@@ -1,7 +1,12 @@
 import { useState } from "react"
+import emailjs from "@emailjs/browser"
 import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
+
+const EMAILJS_SERVICE  = import.meta.env.VITE_EMAILJS_SERVICE
+const EMAILJS_TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE
+const EMAILJS_KEY      = import.meta.env.VITE_EMAILJS_KEY
 
 const links = [
   {
@@ -22,25 +27,35 @@ const links = [
   },
 ]
 
-const RECIPIENT = "ritwikreddy615@gmail.com"
-
 function ContactForm() {
   const [fields, setFields] = useState({ name: "", email: "", message: "" })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState("idle") // idle | sending | sent | error
 
   function handleChange(e) {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio enquiry from ${fields.name}`)
-    const body = encodeURIComponent(
-      `Name: ${fields.name}\nEmail: ${fields.email}\n\n${fields.message}`
-    )
-    window.location.href = `mailto:${RECIPIENT}?subject=${subject}&body=${body}`
-    setSent(true)
-    setFields({ name: "", email: "", message: "" })
+    setStatus("sending")
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE,
+        EMAILJS_TEMPLATE,
+        {
+          name:    fields.name,
+          email:   fields.email,
+          message: fields.message,
+          title:   fields.name,
+          time:    new Date().toLocaleString(),
+        },
+        EMAILJS_KEY
+      )
+      setStatus("sent")
+      setFields({ name: "", email: "", message: "" })
+    } catch {
+      setStatus("error")
+    }
   }
 
   const inputClass = `
@@ -89,6 +104,7 @@ function ContactForm() {
       <div className="flex items-center justify-between gap-6">
         <button
           type="submit"
+          disabled={status === "sending" || status === "sent"}
           className="
             group flex items-center gap-4
             border border-white/10
@@ -98,15 +114,21 @@ function ContactForm() {
             text-mutedWhite
             transition-all duration-500
             hover:border-crimson/50 hover:text-softWhite
+            disabled:opacity-40 disabled:cursor-not-allowed
           "
         >
-          Send Message
+          {status === "sending" ? "Sending…" : "Send Message"}
           <span className="h-px w-6 bg-white/10 group-hover:w-10 group-hover:bg-crimson transition-all duration-500" />
         </button>
 
-        {sent && (
+        {status === "sent" && (
           <p className="text-xs uppercase tracking-[0.25em] text-crimson">
-            Mail client opened
+            Message sent
+          </p>
+        )}
+        {status === "error" && (
+          <p className="text-xs uppercase tracking-[0.25em] text-mutedWhite">
+            Something went wrong — try again
           </p>
         )}
       </div>
