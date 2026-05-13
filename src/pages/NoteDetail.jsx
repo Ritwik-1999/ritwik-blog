@@ -130,7 +130,7 @@ export default function NoteDetail() {
 
         <div className="space-y-12">
 
-          {note.content.map((block, index) => {
+          {(note.content ?? []).map((block, index) => {
 
             if (block.type === "heading") {
               return (
