@@ -9,7 +9,7 @@ import Contact from "../components/sections/Contact"
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen px-8 py-20">
+    <main className="relative min-h-screen px-4 sm:px-8 py-10 sm:py-20">
        <div
          className="
          pointer-events-none
@@ -50,7 +50,7 @@ export default function Home() {
  
            {/* right */}
  
-           <div className="flex items-center gap-8">
+           <div className="flex items-center gap-4 sm:gap-8">
  
              <a
                href="/Sai_Ritwik_Reddy_Resume.pdf"
@@ -83,6 +83,7 @@ export default function Home() {
              <a
                href="mailto:ritwikreddy615@gmail.com"
                className="
+               hidden sm:block
                text-xs uppercase tracking-[0.28em]
                text-mutedWhite
                hover:text-crimson
@@ -113,7 +114,7 @@ export default function Home() {
                      Cloud Infrastructure & Platform Engineering
                    </p>
  
-                   <h1 className="text-7xl md:text-[10rem] leading-[0.9] tracking-tight font-semibold">
+                   <h1 className="text-[3.5rem] sm:text-7xl md:text-[10rem] leading-[0.9] tracking-tight font-semibold">
                      Sai
                      <br />
  
@@ -129,7 +130,7 @@ export default function Home() {
  
                <Reveal delay={0.2}>
                  <div className="max-w-2xl space-y-6">
-                   <p className="text-2xl md:text-3xl leading-relaxed text-softWhite">
+                   <p className="text-xl md:text-3xl leading-relaxed text-softWhite">
                      I build systems that reduce
                      <span className="text-crimson"> operational chaos.</span>
                    </p>

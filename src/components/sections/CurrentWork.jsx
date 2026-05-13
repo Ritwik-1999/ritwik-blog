@@ -7,8 +7,8 @@ export default function CurrentWork() {
   return (
     <Section id="current-work">
       <Container>
-        <div className="border-y border-white/10 py-20">
-          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-16 items-start">
+        <div className="border-y border-white/10 py-10 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 items-start">
             <div className="space-y-8">
               <TelemetryLabel>CURRENT WORK</TelemetryLabel>
 

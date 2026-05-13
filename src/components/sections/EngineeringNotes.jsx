@@ -8,7 +8,7 @@ export default function EngineeringNotes() {
   return (
     <Section id="notes">
       <Container>
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-16 items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
           <div className="space-y-8">
             <TelemetryLabel>ENGINEERING NOTES</TelemetryLabel>
 
@@ -31,7 +31,7 @@ export default function EngineeringNotes() {
                 className="
                   group relative block overflow-hidden
                   border border-white/10 bg-white/[0.025]
-                  p-7 transition-all duration-700
+                  p-5 sm:p-7 transition-all duration-700
                   hover:border-crimson/50 hover:bg-crimson/[0.035]
                 "
               >

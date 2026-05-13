@@ -6,7 +6,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-32 relative ${className}`}
+      className={`py-16 md:py-32 relative ${className}`}
     >
       {children}
     </section>

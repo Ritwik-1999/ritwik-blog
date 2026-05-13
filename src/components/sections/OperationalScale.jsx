@@ -48,7 +48,7 @@ export default function OperationalScale() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {metrics.map((metric, index) => (
               <div
                 key={metric.label}
@@ -56,7 +56,7 @@ export default function OperationalScale() {
                   group relative overflow-hidden
                   border border-white/10
                   bg-white/[0.025]
-                  p-6 min-h-56
+                  p-4 sm:p-6 min-h-40 sm:min-h-56
                   transition-all duration-700
                   hover:border-crimson/50
                   hover:bg-crimson/[0.035]
@@ -81,7 +81,7 @@ export default function OperationalScale() {
                   </div>
 
                   <div>
-                    <p className="text-4xl md:text-5xl font-semibold tracking-tight text-crimson leading-none mb-5">
+                    <p className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-crimson leading-none mb-5">
                       {metric.value}
                     </p>
 

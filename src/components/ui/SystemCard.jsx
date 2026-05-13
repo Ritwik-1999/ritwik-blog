@@ -12,7 +12,7 @@ export default function SystemCard({
       border border-white/10
       bg-white/[0.02]
       backdrop-blur-sm
-      p-8
+      p-5 sm:p-8
       hover:border-crimson/40
       transition-all duration-700
       relative
@@ -37,11 +37,11 @@ export default function SystemCard({
           SYSTEM {index}
         </p>
 
-        <h3 className="text-3xl font-semibold leading-tight mb-6">
+        <h3 className="text-2xl sm:text-3xl font-semibold leading-tight mb-6">
           {title}
         </h3>
 
-        <p className="text-xl text-softWhite leading-relaxed mb-8">
+        <p className="text-base sm:text-xl text-softWhite leading-relaxed mb-8">
           {philosophy}
         </p>
 

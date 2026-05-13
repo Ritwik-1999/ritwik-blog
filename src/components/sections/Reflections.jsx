@@ -9,7 +9,7 @@ export default function Reflections() {
     <Section id="reflections">
       <Container>
         <div className="max-w-5xl">
-          <div className="space-y-8 mb-20">
+          <div className="space-y-8 mb-10 sm:mb-20">
             <TelemetryLabel>REFLECTIONS</TelemetryLabel>
 
             <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-none">
@@ -30,7 +30,7 @@ export default function Reflections() {
                 to={`/reflections/${item.slug}`}
                 className="
                   group block border-l border-white/10
-                  pl-8 relative
+                  pl-4 sm:pl-8 relative
                 "
               >
                 <div
@@ -48,7 +48,7 @@ export default function Reflections() {
                 </p>
 
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-5">
-                  <h3 className="text-3xl md:text-4xl font-semibold">
+                  <h3 className="text-2xl md:text-4xl font-semibold">
                     {item.title}
                   </h3>
 

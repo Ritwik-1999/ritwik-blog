@@ -37,7 +37,7 @@ export default function NoteDetail() {
   }
 
   return (
-    <main className="relative min-h-screen px-8 py-20">
+    <main className="relative min-h-screen px-4 sm:px-8 py-12 sm:py-20">
 
       {/* atmosphere */}
 
@@ -53,9 +53,9 @@ export default function NoteDetail() {
           className="
           absolute top-0 left-1/2
           -translate-x-1/2
-          w-[900px] h-[900px]
+          w-[300px] h-[300px] sm:w-[900px] sm:h-[900px]
           rounded-full
-          bg-crimson blur-[180px]
+          bg-crimson blur-[120px] sm:blur-[180px]
           "
         />
 
@@ -79,21 +79,21 @@ export default function NoteDetail() {
 
         {/* header */}
 
-        <header className="mt-24 mb-24">
+        <header className="mt-12 sm:mt-24 mb-12 sm:mb-24">
 
-          <div className="flex items-center gap-6 mb-10">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-6 mb-10">
 
             <p className="text-xs tracking-[0.35em] uppercase text-crimson">
               {note.tag}
             </p>
 
-            <div className="w-px h-4 bg-white/10" />
+            <div className="hidden sm:block w-px h-4 bg-white/10" />
 
             <p className="text-xs tracking-[0.25em] uppercase text-mutedWhite">
               {note.readTime}
             </p>
 
-            <div className="w-px h-4 bg-white/10" />
+            <div className="hidden sm:block w-px h-4 bg-white/10" />
 
             <p className="text-xs tracking-[0.25em] uppercase text-mutedWhite">
               {note.date}
@@ -103,7 +103,7 @@ export default function NoteDetail() {
 
           <h1
             className="
-            text-5xl md:text-7xl
+            text-4xl sm:text-5xl md:text-7xl
             font-semibold
             tracking-tight
             leading-[0.95]
@@ -137,7 +137,7 @@ export default function NoteDetail() {
                 <h2
                   key={index}
                   className="
-                  text-3xl md:text-4xl
+                  text-2xl md:text-4xl
                   font-semibold
                   tracking-tight
                   "
@@ -153,8 +153,8 @@ export default function NoteDetail() {
                   key={index}
                   className="
                   border-l border-crimson
-                  pl-8
-                  text-2xl
+                  pl-4 sm:pl-8
+                  text-lg sm:text-2xl
                   leading-relaxed
                   text-softWhite
                   italic

@@ -8,7 +8,7 @@ export default function SelectedSystems() {
   return (
     <Section id="systems">
       <Container>
-        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-16 items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 items-start">
 
           <div className="lg:sticky lg:top-24 space-y-8">
             <TelemetryLabel>SELECTED SYSTEMS</TelemetryLabel>

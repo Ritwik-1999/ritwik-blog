@@ -147,7 +147,7 @@ export default function Contact() {
           relative overflow-hidden
           border border-white/10
           bg-white/[0.025]
-          p-10 md:p-14
+          p-6 md:p-10 lg:p-14
           "
         >
 
@@ -164,8 +164,8 @@ export default function Contact() {
 
             <div
               className="
-              grid lg:grid-cols-[1fr_0.8fr]
-              gap-14 items-end
+              grid gap-10 lg:grid-cols-[1fr_0.8fr]
+              lg:gap-14 items-end
               "
             >
 
@@ -212,7 +212,7 @@ export default function Contact() {
 
               {/* right side — quick links */}
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
 
                 {links.map((link) => (
 
