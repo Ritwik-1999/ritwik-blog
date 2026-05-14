@@ -10,7 +10,7 @@ const EMAILJS_KEY      = import.meta.env.VITE_EMAILJS_KEY
 
 const links = [
   {
-    label: "ritwikreddy615@gmail.com",
+    label: "Email",
     href: "mailto:ritwikreddy615@gmail.com",
   },
   {
@@ -219,7 +219,7 @@ export default function Contact() {
                   <a
                     key={link.label}
                     href={link.href}
-                    target={link.label === "ritwikreddy615@gmail.com" ? undefined : "_blank"}
+                    target={link.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noreferrer"
                     className="
                     group
