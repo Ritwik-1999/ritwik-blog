@@ -2,14 +2,15 @@ import { Link } from "react-router-dom"
 import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
+import RunnerAnimation from "../ui/RunnerAnimation"
 import { notes } from "../../data/notes"
 
 export default function EngineeringNotes() {
   return (
-    <Section id="notes">
+    <Section id="notes" className="overflow-hidden">
       <Container>
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
-          <div className="space-y-8">
+          <div className="relative space-y-8">
             <TelemetryLabel>ENGINEERING NOTES</TelemetryLabel>
 
             <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-none">
@@ -21,6 +22,11 @@ export default function EngineeringNotes() {
               Technical writing on infrastructure, automation, cloud reliability,
               and the hidden forces that shape production systems.
             </p>
+
+            {/* runner — atmospheric, sits below heading, clipped by section overflow-hidden */}
+            <div className="hidden lg:block absolute -left-8 top-full -translate-x-24 opacity-40 pointer-events-none">
+              <RunnerAnimation />
+            </div>
           </div>
 
           <div className="space-y-4">

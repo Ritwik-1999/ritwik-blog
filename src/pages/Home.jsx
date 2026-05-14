@@ -101,7 +101,7 @@ export default function Home() {
  
          {/* hero */}
  
-         <section className="min-h-[80vh] flex flex-col justify-center">
+         <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden">
            <div className="grid lg:grid-cols-[1.35fr_0.65fr] gap-16 items-center">
  
              {/* left hero content */}
@@ -147,10 +147,11 @@ export default function Home() {
              </div>
  
              {/* right hero index */}
- 
+
              <SystemIndex />
  
            </div>
+
          </section>
  
          <OperationalScale />
