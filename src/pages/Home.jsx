@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import SelectedSystems from "../components/sections/SelectedSystems"
 import OperationalScale from "../components/sections/OperationalScale"
 import Reveal from "../components/ui/Reveal"
@@ -9,7 +10,7 @@ import Contact from "../components/sections/Contact"
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen px-4 sm:px-8 py-10 sm:py-20">
+    <main id="main-content" className="relative min-h-screen px-4 sm:px-8 py-10 sm:py-20">
        <div
          className="
          pointer-events-none
@@ -53,7 +54,7 @@ export default function Home() {
            <div className="flex items-center gap-4 sm:gap-8">
  
              <a
-               href="/Sai_Ritwik_Reddy_Resume.pdf"
+               href="/Sai_Ritwik_reddy_resume.pdf"
                target="_blank"
                rel="noreferrer"
                className="
@@ -142,7 +143,7 @@ export default function Home() {
                  </div>
                </Reveal>
  
-               {/* hero metrics */}
+               <Link to="/blog" className="blog-cta">Read the blog <span aria-hidden="true">↗</span></Link>
  
              </div>
  

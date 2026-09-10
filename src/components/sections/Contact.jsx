@@ -23,7 +23,7 @@ const links = [
   },
   {
     label: "Resume",
-    href: "/Sai_Ritwik_Reddy_Resume.pdf",
+    href: "/Sai_Ritwik_reddy_resume.pdf",
   },
 ]
 

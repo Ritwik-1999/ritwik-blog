@@ -8,15 +8,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#050505",
-        surface: "#0B0B0B",
+        background: "rgb(var(--background) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        white: "rgb(var(--contrast) / <alpha-value>)",
 
-        crimson: "#C1121F",
+        crimson: "rgb(var(--accent) / <alpha-value>)",
         crimsonBright: "#FF2D55",
         crimsonDeep: "#7A0019",
 
-        softWhite: "#F5F5F5",
-        mutedWhite: "#B8B8B8",
+        softWhite: "rgb(var(--foreground) / <alpha-value>)",
+        mutedWhite: "rgb(var(--muted) / <alpha-value>)",
       },
 
       fontFamily: {

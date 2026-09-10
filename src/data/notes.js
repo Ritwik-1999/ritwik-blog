@@ -52,7 +52,7 @@ export const notes = [
     ]
     },
   {
-    slug: "platform-engineering-cognitive-load",
+    slug: "platform-engineering-cognitive-load", status: "preview",
     title: "Platform Engineering Is Really About Cognitive Load",
     description:
       "Good platforms do not just automate tasks. They remove unnecessary decisions from engineers operating under pressure.",
@@ -92,7 +92,7 @@ export const notes = [
     ],
   },
   {
-    slug: "manual-cloud-operations",
+    slug: "manual-cloud-operations", status: "preview",
     title: "The Hidden Cost of Manual Cloud Operations",
     description:
       "Manual checks feel safe until scale turns them into bottlenecks, inconsistencies, and silent operational risk.",

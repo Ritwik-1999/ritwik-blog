@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
-import { reflections } from "../../data/reflections"
+import { posts } from "../../data/posts"
 
 export default function Reflections() {
   return (
@@ -24,7 +24,7 @@ export default function Reflections() {
           </div>
 
           <div className="space-y-10">
-            {reflections.map((item, index) => (
+            {posts.filter(post => post.category === "Reflections").map((item, index) => (
               <Link
                 key={item.slug}
                 to={`/reflections/${item.slug}`}

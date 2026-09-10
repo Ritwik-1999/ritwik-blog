@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen px-8 py-20 flex items-center">
+    <main id="main-content" className="min-h-screen px-8 py-20 flex items-center">
       <div className="max-w-4xl mx-auto">
         <p className="text-crimson uppercase tracking-[0.35em] text-xs mb-8">
           404

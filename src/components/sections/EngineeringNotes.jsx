@@ -3,7 +3,7 @@ import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
 import RunnerAnimation from "../ui/RunnerAnimation"
-import { notes } from "../../data/notes"
+import { posts } from "../../data/posts"
 
 export default function EngineeringNotes() {
   return (
@@ -30,7 +30,7 @@ export default function EngineeringNotes() {
           </div>
 
           <div className="space-y-4">
-            {notes.map((note, index) => (
+            {posts.filter(post => post.category === "Engineering").map((note, index) => (
               <Link
                 key={note.title}
                 to={`/notes/${note.slug}`}
@@ -50,7 +50,7 @@ export default function EngineeringNotes() {
                     </p>
 
                     <p className="text-xs uppercase tracking-[0.25em] text-mutedWhite">
-                      {note.tag}
+                      {note.tag}{note.status === "preview" ? " · Preview" : ""}
                     </p>
                   </div>
 
