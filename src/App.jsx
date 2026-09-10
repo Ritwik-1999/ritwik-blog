@@ -1,31 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import NoteDetail from "./pages/NoteDetail"
-import ReflectionDetail from "./pages/ReflectionDetail"
-import NotFound from "./pages/NotFound"
-import Blog from "./pages/Blog"
-import SiteHeader from "./components/layout/SiteHeader"
-import { useEffect } from "react"
-import { useLocation } from "react-router-dom"
-
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }) }, [pathname])
-  return null
-}
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <SiteHeader />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/notes/:slug" element={<NoteDetail />} />
-        <Route path="/reflections/:slug" element={<ReflectionDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  )
+import SiteHeader from './components/layout/SiteHeader'
+import SiteFooter from './components/layout/SiteFooter'
+import Home from './pages/Home'
+import Blog from './pages/Blog'
+import ArticleDetail from './pages/ArticleDetail'
+import NotFound from './pages/NotFound'
+export default function App({ data }) {
+  const Page = { home: Home, blog: Blog, article: ArticleDetail, notfound: NotFound }[data.kind]
+  return <><SiteHeader pathname={data.pathname} /><Page {...data} /><SiteFooter /></>
 }

@@ -1,169 +1,27 @@
-import { Link } from "react-router-dom"
 import SelectedSystems from "../components/sections/SelectedSystems"
 import OperationalScale from "../components/sections/OperationalScale"
-import Reveal from "../components/ui/Reveal"
-import EngineeringNotes from "../components/sections/EngineeringNotes"
-import Reflections from "../components/sections/Reflections"
-import SystemIndex from "../components/ui/SystemIndex"
 import CurrentWork from "../components/sections/CurrentWork"
 import Contact from "../components/sections/Contact"
+import PostCard from "../components/blog/PostCard"
 
-export default function Home() {
-  return (
-    <main id="main-content" className="relative min-h-screen px-4 sm:px-8 py-10 sm:py-20">
-       <div
-         className="
-         pointer-events-none
-         absolute inset-0 overflow-hidden
-         opacity-[0.06]
-         "
-       >
-         <svg
-           className="w-full h-full"
-           xmlns="http://www.w3.org/2000/svg"
-         >
-           <line x1="10%" y1="20%" x2="40%" y2="35%" stroke="white" strokeWidth="1" />
-           <line x1="40%" y1="35%" x2="75%" y2="15%" stroke="white" strokeWidth="1" />
-           <circle cx="40%" cy="35%" r="4" fill="#C1121F" />
-           <circle cx="75%" cy="15%" r="4" fill="#C1121F" />
-         </svg>
-       </div>
- 
-       <div className="max-w-7xl mx-auto relative z-10">
- 
-         {/* top telemetry */}
- 
-       <Reveal>
- 
-         <div className="flex items-center justify-between mb-10">
- 
-           {/* left */}
- 
-           <div className="flex items-center gap-3">
- 
-             <div className="w-2 h-2 rounded-full bg-crimson animate-pulse" />
- 
-             <p className="text-xs tracking-[0.35em] uppercase text-crimson">
-               SYSTEM STATUS — OPERATIONAL
-             </p>
- 
-           </div>
- 
-           {/* right */}
- 
-           <div className="flex items-center gap-4 sm:gap-8">
- 
-             <a
-               href="/Sai_Ritwik_reddy_resume.pdf"
-               target="_blank"
-               rel="noreferrer"
-               className="
-               text-xs uppercase tracking-[0.28em]
-               text-mutedWhite
-               hover:text-crimson
-               transition-colors duration-500
-               "
-             >
-               Resume
-             </a>
- 
-             <a
-               href="https://www.linkedin.com/in/ritwik23/"
-               target="_blank"
-               rel="noreferrer"
-               className="
-               text-xs uppercase tracking-[0.28em]
-               text-mutedWhite
-               hover:text-crimson
-               transition-colors duration-500
-               "
-             >
-               LinkedIn
-             </a>
- 
-             <a
-               href="mailto:ritwikreddy615@gmail.com"
-               className="
-               hidden sm:block
-               text-xs uppercase tracking-[0.28em]
-               text-mutedWhite
-               hover:text-crimson
-               transition-colors duration-500
-               "
-             >
-               ritwikreddy615@gmail.com
-             </a>
- 
-           </div>
- 
-         </div>
- 
-       </Reveal>
- 
-         {/* hero */}
- 
-         <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden">
-           <div className="grid lg:grid-cols-[1.35fr_0.65fr] gap-16 items-center">
- 
-             {/* left hero content */}
- 
-             <div className="space-y-10">
- 
-               <Reveal delay={0.1}>
-                 <div>
-                   <p className="text-sm uppercase tracking-[0.35em] text-mutedWhite mb-6">
-                     Cloud Infrastructure & Platform Engineering
-                   </p>
- 
-                   <h1 className="text-[3.5rem] sm:text-7xl md:text-[10rem] leading-[0.9] tracking-tight font-semibold">
-                     Sai
-                     <br />
- 
-                     <span className="text-crimson">
-                       Ritwik
-                     </span>
- 
-                     <br />
-                     Reddy
-                   </h1>
-                 </div>
-               </Reveal>
- 
-               <Reveal delay={0.2}>
-                 <div className="max-w-2xl space-y-6">
-                   <p className="text-xl md:text-3xl leading-relaxed text-softWhite">
-                     I build systems that reduce
-                     <span className="text-crimson"> operational chaos.</span>
-                   </p>
- 
-                   <p className="text-lg leading-relaxed text-mutedWhite">
-                     Automation-first infrastructure across AWS and Azure —
-                     designed for reliability, governance, and enterprise-scale operations.
-                   </p>
-                 </div>
-               </Reveal>
- 
-               <Link to="/blog" className="blog-cta">Read the blog <span aria-hidden="true">↗</span></Link>
- 
-             </div>
- 
-             {/* right hero index */}
 
-             <SystemIndex />
- 
-           </div>
-
-         </section>
- 
-         <OperationalScale />
-         <SelectedSystems />
-         <EngineeringNotes />
-         <Reflections />
-         <CurrentWork />
-         <Contact />
- 
-       </div>
- 
-    </main>
-  )
+export default function Home({ posts = [] }) {
+  const published = posts.filter(post => !post.status || post.status === "published")
+  const featured = published.find(post => post.featured) || published[0]
+  const recent = published.filter(post => post.path !== featured?.path).slice(0, 2)
+  return <main id="main-content" tabIndex={-1} className="home-page">
+    <section className="home-intro">
+      <p className="eyebrow">Sai Ritwik Reddy · Cloud & platform engineering</p>
+      <h1>Reliable systems.<br /><span className="text-crimson">Considered decisions.</span></h1>
+      <p>I build infrastructure across AWS and Azure, and write about automation, reliability, and the ideas behind the work.</p>
+      <div className="intro-links"><a className="read-link" href="/blog">Explore the blog →</a><a className="read-link" href="#systems">View my work ↓</a></div>
+    </section>
+    <section id="notes" className="latest-writing" aria-labelledby="latest-heading">
+      <div className="section-heading"><h2 id="latest-heading">Latest writing</h2><a href="/blog">All articles →</a></div>
+      <div className="writing-grid">{featured && <PostCard post={featured} featured />}<div className="recent-writing">{recent.map(post => <PostCard key={post.path} post={post} />)}</div></div>
+    </section>
+    <div className="portfolio-sections"><SelectedSystems /><OperationalScale /><CurrentWork /></div>
+    <section id="about" className="about-section"><p className="eyebrow">About the author</p><h2>Engineering for operational calm.</h2><p>I’m Sai Ritwik Reddy. My work spans cloud infrastructure, platform engineering, and automation—building repeatable systems that reduce operational chaos.</p><p>Here I share engineering notes and reflections on the decisions that make systems easier to operate.</p><a className="read-link" href="/Sai_Ritwik_reddy_resume.pdf">View résumé ↗</a></section>
+    <Contact />
+  </main>
 }

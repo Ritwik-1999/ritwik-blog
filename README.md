@@ -1,30 +1,82 @@
-# Ritwik's portfolio & blog
+# Ritwik's writing & portfolio
 
-The portfolio lives at `/`; the writing archive lives at `/blog`. Existing `/notes/:slug` and `/reflections/:slug` links remain valid.
+A React/Vite site with static HTML publishing. Articles, category pages, search metadata, an RSS feed, a sitemap, and a real 404 page are generated at build time. Existing `/notes/...` and `/reflections/...` addresses are preserved.
 
-## Add a post
+## Write a post
 
-Add an entry to `src/data/notes.js` (engineering) or `src/data/reflections.js` (reflections). Copy an existing entry and give it a unique, permanent slug. Notes use `description`; reflections use `text` for the summary. Set `date` to an ISO date such as `2026-09-09` for accurate chronological sorting. Older month-only dates remain supported.
+Create a Markdown file in `content/posts/`. The filename is for organization; `slug` controls the permanent address.
 
-Use `status: "draft"` to hide an unfinished post from the archive, home page, and article routes. Use `status: "preview"` to deliberately share a work in progress with a visible notice. Omit status when ready to publish. Reading time is calculated automatically.
+```markdown
+---
+title: "A clear, specific article title"
+slug: "a-permanent-article-address"
+description: "A short explanation of what readers will learn."
+date: "2026-09-10"
+category: "Engineering"
+topics: ["Infrastructure", "Automation"]
+status: "draft"
+featured: false
+---
 
-Supported content blocks:
+Start with the problem and why it matters.
 
-```js
-{ type: "paragraph", text: "Your paragraph here." }
-{ type: "heading", text: "A section title" }
-{ type: "quote", text: "A quotation" }
-{ type: "code", text: "terraform plan\nterraform apply" }
-{ type: "list", items: ["First point", "Second point"] }
-{ type: "link", text: "Source documentation", url: "https://example.com" }
+## The approach
+
+Write normal Markdown with **emphasis**, `inline code`, and
+[references](https://example.com).
+
+### The tradeoffs
+
+- What worked
+- What did not
+- When to use a different approach
 ```
 
-Headings automatically appear in the article's contents navigation. Text is rendered safely as text, without raw HTML. Keep quoted material attributed through a nearby source link.
+`category` is `Engineering` or `Reflections`. `status` is `draft`, `preview`, or `published`:
 
-Run `npm run dev` to preview, `npm run lint` to check, and `npm run build` before deploying through your existing host. The root `vercel.json` enables direct links and refreshes on article routes when hosted on Vercel.
+- **draft:** excluded from all public pages, RSS, sitemap, and browser downloads. Change to preview locally when you want to inspect the rendering; do not deploy that change unless you want it public.
+- **preview:** available by URL and under `/blog/previews`, marked as unfinished and `noindex`; excluded from homepage, main archive, RSS, and sitemap.
+- **published:** included in the public archive and feed. Only published posts can be featured.
 
-Publishing is file-based: this site does not include a browser editor or CMS. New posts go live when the updated site is deployed. Article titles and descriptions update in the browser; crawler-rendered previews would require prerendering or server rendering as a separate enhancement.
+Use exact quoted dates for new articles. Existing `2026-05` dates retain their original month-only precision; an exact publication day has not been invented. Set `updated: "2026-09-12"` only after a substantive revision. Optionally set `image: "/images/article-cover.png"` to an existing image in `public/` for a post-specific social preview. Posts without an image still have title and description previews.
 
-## Appearance
+Headings get stable IDs such as `heading-the-approach`; link to a section using `[The approach](#heading-the-approach)`. A contents menu appears automatically at three or more headings. Use `##` and deeper headings because the article title supplies `h1`.
 
-The header's Light/Dark button is available on every page. First visits follow the device color preference; explicit choices persist in local storage. If storage is unavailable, the switch still works for the current visit. Shared colors are defined in `src/index.css` and used by Tailwind throughout the site.
+Fenced code blocks support language-aware highlighting. Put images in `public/images/` and use `![Descriptive alt text](/images/diagram.png "Optional caption")`. Inline links, nested lists, blockquotes, tables, and footnotes (`[^1]` with `[^1]: Source`) are supported. Raw HTML is escaped. Internal links must use full site paths such as `/notes/terraform-drift`; broken paths and article section links fail the build.
+
+## Preview and publish
+
+- `npm run dev`: live preview with full article HTML, including Markdown edits.
+- `npm test`: content, draft, metadata, and feed checks.
+- `npm run lint`: source checks.
+- `npm run build`: generate the deployable `dist/` directory.
+- `npm run preview`: serve that production build locally.
+
+Before the first production build, set `url` in `site.config.json` to the site's real HTTPS origin (no path), or supply `SITE_URL`. On Vercel, `VERCEL_PROJECT_PRODUCTION_URL` is also supported as a fallback. Use the custom domain as the primary URL when you have one. Never publish a build using localhost as its origin.
+
+For a local-only production check in PowerShell:
+
+```powershell
+$env:SITE_URL = 'http://localhost:5174'
+npm run build
+```
+
+The existing hosting workflow can deploy `dist/`. Root `vercel.json` uses clean static URLs; there is no SPA catch-all rewrite. Vercel serves `404.html` for missing pages. Other hosts must map directory indexes and serve the 404 file with HTTP status 404. Development and production preview servers also return HTTP 404 for unknown routes.
+
+No new hosting service, account, or subscription is required. Publishing a new post means deploying a new build. Retain established article slugs; redirects should accompany any deliberate address change.
+
+## Reader experience
+
+The initial HTML includes the selected article and its metadata, even without JavaScript. Interactive code loads by page; articles do not load the portfolio, email SDK, or other post bodies. Theme preference is initialized before painting and persists when storage is available. Without JavaScript, all writing, navigation, contact email, and RSS links remain usable.
+
+RSS is at `/feed.xml`. The feed includes finished articles only. Related articles are selected from finished posts sharing a category or topic. Copy-link feedback and form statuses are announced to assistive technology.
+
+EmailJS retains the existing `VITE_EMAILJS_SERVICE`, `VITE_EMAILJS_TEMPLATE`, and `VITE_EMAILJS_KEY` configuration. The form appears when configured; direct email and LinkedIn links are always available. The email SDK loads only on submission. Tests must not send real messages.
+
+## A sustainable publishing routine
+
+Finish a few strong articles before featuring them. Explain a concrete problem, your approach, tradeoffs, evidence, and lessons; cite sources and distinguish personal observations from general claims. A short article is fine when it fully answers its question.
+
+After publishing, share a useful summary on LinkedIn with the permanent article URL. Submit `/sitemap.xml` in your existing Google Search Console account. Review article visits, search referrals, and contact actions using your hosting analytics. No analytics account or tracking service has been connected by this change.
+
+Revisit search when the archive reaches roughly 15–20 posts. Email subscriptions, a browser editor, comments, and user accounts are intentionally deferred until needed; RSS works now without account setup.
