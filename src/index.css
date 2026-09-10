@@ -100,7 +100,7 @@ body::after {
   --foreground: 242 241 238;
   --muted: 177 180 185;
   --contrast: 255 255 255;
-  --accent: 244 99 110;
+  --accent: 193 18 31;
   color-scheme: dark;
 }
 :root[data-theme="light"] {

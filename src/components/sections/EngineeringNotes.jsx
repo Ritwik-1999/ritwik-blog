@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import Container from "../layout/Container"
 import Section from "../layout/Section"
 import TelemetryLabel from "../ui/TelemetryLabel"
-import RunnerAnimation from "../ui/RunnerAnimation"
 import { posts } from "../../data/posts"
 
 export default function EngineeringNotes() {
@@ -23,10 +22,6 @@ export default function EngineeringNotes() {
               and the hidden forces that shape production systems.
             </p>
 
-            {/* runner — atmospheric, sits below heading, clipped by section overflow-hidden */}
-            <div className="hidden lg:block absolute -left-8 top-full -translate-x-24 opacity-40 pointer-events-none">
-              <RunnerAnimation />
-            </div>
           </div>
 
           <div className="space-y-4">
