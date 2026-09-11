@@ -318,3 +318,93 @@ a:hover { text-decoration: underline; }
 .article-body table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-family: Inter, sans-serif; font-size: 16px; line-height: 1.6; }
 .article-body th, .article-body td { padding: 12px 16px; border: 1px solid rgb(var(--contrast) / .2); text-align: left; }
 .article-body th { background: rgb(var(--contrast) / .04); }
+
+/* An editorial opening: the question leads, the diagram gives it a boundary. */
+.inquiry-opening { display: grid; grid-template-columns: 1.35fr 1fr; align-items: center; gap: 36px; padding: 76px 0 72px; }
+.inquiry-copy { min-width: 0; }
+.inquiry-copy > .eyebrow { font-size: 13px; letter-spacing: .04em; line-height: 1.6; }
+.inquiry-opening h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 5.2vw, 64px); font-weight: 400; line-height: 1.08; letter-spacing: -.045em; white-space: pre-line; margin: 26px 0; text-wrap: balance; }
+.inquiry-description { max-width: 540px; color: rgb(var(--muted)); font-size: 18px; line-height: 1.8; }
+.inquiry-article { margin-top: 30px; }
+.inquiry-article-label { color: rgb(var(--muted)); font-size: 13px; margin-bottom: 8px; }
+.inquiry-article-title { font-size: 16px; line-height: 1.6; }
+.inquiry-reading-time { display: block; color: rgb(var(--muted)); font-size: 13px; margin-top: 5px; }
+.inquiry-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; margin-top: 20px; }
+.essay-link, .browse-link { display: inline-flex; align-items: center; gap: 24px; min-height: 44px; font-size: 14px; }
+.essay-link { border-bottom: 2px solid #c1121f; }
+.browse-link { color: rgb(var(--muted)); }
+.decision-figure { margin: 0; width: 100%; max-width: 440px; justify-self: center; color: rgb(var(--muted)); }
+.decision-figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+.decision-guide { stroke: rgb(var(--contrast) / .045); stroke-width: 1; }
+.decision-path { stroke: rgb(var(--muted)); stroke-width: 1.2; }
+.decision-node { fill: rgb(var(--background)); stroke: rgb(var(--contrast) / .3); stroke-width: 1; }
+.decision-label { fill: rgb(var(--foreground)); font-size: 15px; }
+.decision-kicker { fill: rgb(var(--muted)); font-size: 12px; letter-spacing: 1.5px; }
+.decision-junction { fill: rgb(var(--muted)); }
+.decision-boundary { fill: none; stroke: #c1121f; stroke-width: 2; }
+.decision-gate { fill: rgb(var(--background)); stroke: #c1121f; stroke-width: 2; }
+.decision-note { fill: rgb(var(--foreground)); font-size: 14px; }
+.decision-footnote { fill: rgb(var(--foreground)); font-family: Georgia, 'Times New Roman', serif; font-size: 20px; font-style: italic; }
+.decision-figure figcaption { margin: 12px 7% 0; color: rgb(var(--muted)); font-size: 13px; line-height: 1.7; }
+.question-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-top: 24px; }
+.question-grid .writing-card + .writing-card { border-top: 0; padding-top: 8px; }
+.question-grid .writing-card h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: 32px; line-height: 1.2; max-width: 400px; margin: 16px 0; }
+.question-grid .writing-card .question-article-title { color: rgb(var(--foreground)); font-size: 14px; margin-bottom: 10px; }
+.inquiry-about { margin-top: 36px; border-top: 1px solid rgb(var(--contrast) / .2); padding-top: 40px; }
+.inquiry-about h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: 38px; }
+@media(max-width: 800px) {
+  .inquiry-opening { grid-template-columns: 1fr; gap: 44px; padding: 44px 0; }
+  .inquiry-opening h1 { max-width: 620px; font-size: clamp(38px, 7.8vw, 58px); }
+  .decision-figure { max-width: 390px; }
+  .question-grid { gap: 28px; }
+}
+@media(max-width: 540px) {
+  .inquiry-opening { padding-top: 32px; gap: 36px; }
+  .inquiry-opening h1 { font-size: clamp(36px, 9.5vw, 48px); }
+  .inquiry-description { font-size: 17px; }
+  .question-grid { grid-template-columns: 1fr; gap: 0; }
+  .question-grid .writing-card + .writing-card { border-top: 1px solid rgb(var(--contrast) / .15); padding-top: 24px; }
+  .section-heading { flex-wrap: wrap; gap: 8px; }
+  .inquiry-about h2 { font-size: 32px; }
+}
+
+/* A personal front door, with the visual rhythm of a working notebook. */
+.curiosity-opening { padding: 28px 0 48px; }
+.curiosity-masthead { display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgb(var(--contrast) / .2); padding-bottom: 18px; font-size: 12px; letter-spacing: .06em; }
+.curiosity-masthead span { color: rgb(var(--muted)); }
+.curiosity-stage { display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; position: relative; padding: 40px 0 32px; }
+.margin-note { font-family: Georgia, serif; font-style: italic; color: rgb(var(--muted)); font-size: 17px; margin-bottom: 22px; }
+.curiosity-title h1 { font-size: clamp(76px, 10vw, 130px); line-height: .98; font-weight: 750; letter-spacing: -.075em; position: relative; z-index: 1; }
+.curiosity-title h1 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.065em; color: #c1121f; }
+.curiosity-mark { position: relative; height: 330px; display: grid; place-items: center; isolation: isolate; }
+.giant-question { font-family: Georgia, serif; font-size: 290px; line-height: 1; color: #c1121f; transform: rotate(14deg); }
+.orbit { position: absolute; width: 94%; height: 53%; border: 1px solid rgb(var(--contrast) / .28); border-radius: 50%; transform: rotate(-32deg); z-index: -1; }
+.orbit-two { transform: rotate(35deg); height: 62%; width: 78%; border-style: dashed; }
+.mark-note { position: absolute; bottom: 4px; right: 0; font: italic 17px/1.3 Georgia, serif; color: rgb(var(--muted)); transform: rotate(-7deg); }
+.curiosity-intro { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; padding-top: 34px; border-top: 1px solid rgb(var(--contrast) / .2); }
+.curiosity-invitation { font: 30px/1.3 Georgia, serif; letter-spacing: -.025em; }
+.curiosity-invitation span { text-decoration: underline; text-decoration-color: #c1121f; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.curiosity-intro > div > p { font-size: 16px; line-height: 1.8; color: rgb(var(--muted)); }
+.curiosity-intro .curiosity-aside { margin-top: 12px; font-family: Georgia, serif; font-style: italic; color: rgb(var(--foreground)); }
+.curiosity-intro .essay-link { margin-top: 16px; }
+.desk-essay { display: grid; grid-template-columns: 210px 1fr; gap: 36px; padding: 32px; margin: 8px 0 54px; background: rgb(var(--contrast) / .035); border-left: 3px solid #c1121f; }
+.desk-label { font-size: 13px; }
+.desk-label > span:last-child { color: rgb(var(--muted)); display: block; margin-top: 10px; }
+.desk-number { display: block; font-size: 42px; line-height: 1; margin-bottom: 18px; }
+.desk-essay h2 { font-size: clamp(26px, 3vw, 34px); line-height: 1.2; font-weight: 600; letter-spacing: -.035em; max-width: 650px; }
+.desk-essay > div > p { color: rgb(var(--muted)); line-height: 1.75; margin: 16px 0 8px; }
+@media(max-width: 700px) {
+  .curiosity-masthead { font-size: 11px; flex-wrap: wrap; gap: 6px; }
+  .curiosity-stage { grid-template-columns: 1fr; padding: 30px 0; }
+  .curiosity-title h1 { font-size: clamp(74px, 16vw, 110px); }
+  .margin-note { font-size: 15px; max-width: 210px; }
+  .curiosity-mark { position: absolute; width: 120px; height: 135px; right: 0; top: 15px; opacity: .65; }
+  .giant-question { font-size: 105px; }
+  .mark-note { display: none; }
+  .curiosity-intro { grid-template-columns: 1fr; gap: 22px; padding-top: 25px; }
+  .curiosity-invitation { font-size: 27px; }
+  .desk-essay { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .desk-label { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .desk-number, .desk-label > span:last-child { margin: 0; }
+}
+@media(max-width: 380px) { .curiosity-mark { width: 88px; right: -5px; } }

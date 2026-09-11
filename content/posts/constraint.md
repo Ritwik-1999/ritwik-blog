@@ -1,6 +1,7 @@
 ---
 title: "Constraint"
 slug: "constraint"
+question: "When do fewer options create more clarity?"
 description: "Good engineering is often the reduction of unnecessary possibility."
 date: "2026-05"
 category: "Reflections"

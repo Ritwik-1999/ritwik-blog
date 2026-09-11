@@ -6,7 +6,7 @@ date: "2026-05"
 category: "Engineering"
 topics: ["Infrastructure"]
 status: "published"
-featured: true
+featured: false
 ---
 
 Infrastructure drift is rarely caused by a single catastrophic event. More often, it emerges slowly through manual interventions, emergency fixes, inconsistent provisioning paths, and undocumented operational decisions.

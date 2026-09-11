@@ -25,10 +25,9 @@ test('Markdown and embedded page data cannot introduce executable HTML', () => {
 test('published archive, related posts and previews stay separated', () => {
   const posts = readPosts()
   validateLinks(posts)
-  assert.equal(posts.length, 6)
-  assert.equal(pageData('/blog', posts).posts.length, 4)
-  assert.equal(pageData('/blog/previews', posts).posts.length, 2)
-  assert.equal(pageData('/blog/engineering', posts).posts.length, 1)
+  assert.deepEqual(pageData('/blog', posts).posts.map(p => p.slug), posts.filter(p => p.status === 'published').map(p => p.slug))
+  assert(pageData('/blog/previews', posts).posts.every(p => p.status === 'preview'))
+  assert(pageData('/blog/engineering', posts).posts.every(p => p.category === 'Engineering' && p.status === 'published'))
   assert.equal(pageData('/missing', posts).kind, 'notfound')
   const article = pageData('/reflections/invisible-systems', posts)
   assert(article.related.every(p => p.status === 'published' && p.path !== article.post.path))
@@ -59,7 +58,7 @@ test('broken internal paths and heading links fail validation', () => {
 test('RSS and sitemap expose finished articles only and use the configured origin', () => {
   const posts = readPosts(), origin = 'https://example.com'
   const feed = rss(posts, origin), map = sitemap(posts, origin)
-  assert.equal((feed.match(/<item>/g) || []).length, 4)
+  assert.equal((feed.match(/<item>/g) || []).length, posts.filter(p => p.status === 'published').length)
   assert.match(feed, /https:\/\/example.com\/notes\/terraform-drift/)
   assert.doesNotMatch(feed + map, /manual-cloud-operations|platform-engineering-cognitive-load|blog\/previews/)
 })

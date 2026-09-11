@@ -1,6 +1,7 @@
 ---
 title: "Invisible Systems"
 slug: "invisible-systems"
+question: "Why do the best systems disappear?"
 description: "The best infrastructure disappears into reliability. Most users never notice it exists — only when it fails."
 date: "2026-05"
 category: "Reflections"
