@@ -1,8 +1,7 @@
 export default function NewspaperCard({ post, lead = false }) {
   return <article className="newspaper-card">
-    <div className="newspaper-masthead">The Curious Mind</div>
+    <div className="newspaper-masthead">{lead ? 'The featured essay' : post.category === 'Engineering' ? 'Engineering notes' : 'Reflections'}</div>
     <div className="newspaper-edition"><span>{post.category}</span><time dateTime={post.date}>{post.displayDate || post.date}</time></div>
-    <p className="newspaper-kicker">{lead ? 'The featured story' : 'From the notebook'}</p>
     <h3><a href={post.path}>{post.title}</a></h3>
     {post.question || post.openingQuestion ? <p className="newspaper-deck">{post.question || post.openingQuestion}</p> : null}
     <p className="newspaper-excerpt">{post.description}</p>

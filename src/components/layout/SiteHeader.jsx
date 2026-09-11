@@ -14,7 +14,7 @@ export default function SiteHeader({ pathname = '/' }) {
       <nav aria-label="Main navigation">
         <a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</a>
         <a href="/blog" aria-current={pathname.startsWith('/blog') || pathname.startsWith('/notes/') || pathname.startsWith('/reflections/') ? 'page' : undefined}>Blog</a>
-        <a href="/#systems">Work</a><a href="/#contact">Contact</a>
+        <a href="/work" aria-current={pathname === '/work' ? 'page' : undefined}>Work</a><a href="/#contact">Contact</a>
       </nav>
       <button className="theme-toggle js-only" onClick={toggleTheme} aria-label="Switch between light and dark theme" title="Switch color theme"><span className="theme-light" aria-hidden="true">☀</span><span className="theme-dark" aria-hidden="true">☾</span><span className="theme-word">Theme</span></button>
       <span role="status" className="sr-only">{announcement}</span>

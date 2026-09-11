@@ -70,10 +70,11 @@ export function summarize(post) {
   const { html: _html, headings: _headings, links: _links, images: _images, ...summary } = post
   return summary
 }
-export const archiveRoutes = ['/', '/blog', '/blog/engineering', '/blog/reflections', '/blog/previews']
+export const archiveRoutes = ['/', '/work', '/blog', '/blog/engineering', '/blog/reflections', '/blog/previews']
 export function pageData(url, posts) {
   const pathname = new URL(url, 'http://localhost').pathname.replace(/\/$/, '') || '/'
   const published = posts.filter(p => p.status === 'published')
+  if (pathname === '/work') return { kind: 'work', pathname, title: 'Engineering work · Ritwik Reddy', description: 'Selected cloud infrastructure, automation, and platform reliability work by Sai Ritwik Reddy.' }
   if (pathname === '/') return { kind: 'home', pathname, posts: published.map(summarize), title: 'Ritwik Reddy · Engineering & writing', description: 'Engineering notes, reflections, and selected work by Sai Ritwik Reddy. Cloud infrastructure, automation, and reliable systems.' }
   if (archiveRoutes.includes(pathname)) {
     const category = pathname.endsWith('/engineering') ? 'Engineering' : pathname.endsWith('/reflections') ? 'Reflections' : null

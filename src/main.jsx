@@ -7,6 +7,7 @@ import './index.css'
 const data = JSON.parse(document.getElementById('page-data').textContent)
 const pages = {
   home: () => import('./pages/Home'),
+  work: () => import('./pages/Work'),
   blog: () => import('./pages/Blog'),
   article: () => import('./pages/ArticleDetail'),
   notfound: () => import('./pages/NotFound'),
