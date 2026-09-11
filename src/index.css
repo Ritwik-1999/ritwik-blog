@@ -408,3 +408,96 @@ a:hover { text-decoration: underline; }
   .desk-number, .desk-label > span:last-child { margin: 0; }
 }
 @media(max-width: 380px) { .curiosity-mark { width: 88px; right: -5px; } }
+
+/* An illuminated workshop, drawn as vector tubing rather than a video. */
+.curiosity-stage { grid-template-columns: 1.25fr 1fr; gap: 16px; }
+.question-workshop { position: relative; isolation: isolate; min-width: 0; padding-bottom: 32px; }
+.workshop-halo { position: absolute; inset: -12% -12% 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse, rgb(193 18 31 / .24), rgb(193 18 31 / .06) 48%, transparent 72%); animation: workshop-breathe 8s ease-in-out infinite alternate; }
+.workshop-drawing { display: block; width: 100%; height: auto; overflow: visible; }
+.workshop-grid { color: rgb(var(--contrast)); opacity: .12; }
+.workshop-traces { stroke: rgb(var(--contrast) / .2); stroke-width: 1.2; }
+.workshop-signal { stroke: #c1121f; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 7 93; animation: workshop-signal 9s linear infinite; }
+.tube-mounts { stroke: rgb(var(--contrast) / .24); stroke-width: 6; }
+.question-shadow { stroke: #000; stroke-width: 20; transform: translate(4px, 7px); opacity: .6; }
+.question-tube { stroke: #c1121f; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 9px rgb(193 18 31 / .7)); }
+.question-core { stroke: #ffc078; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; animation: workshop-warmup 1.6s ease-out both; }
+.workshop-idea { stroke: #e5a85c; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.idea-rays { animation: workshop-idea 9s ease-in-out infinite; }
+.workshop-caption { fill: rgb(var(--muted)); font: 11px ui-monospace, monospace; letter-spacing: 1.6px; }
+.workshop-pause { position: absolute; bottom: -3px; right: 0; min-height: 44px; align-items: center; padding: 8px 12px; font-size: 12px; color: rgb(var(--muted)); text-decoration: underline; text-underline-offset: 4px; }
+.curiosity-title h1 em { display: inline-block; animation: workshop-thought 900ms 180ms ease-out both; }
+.curiosity-intro { animation: workshop-thought 900ms 300ms ease-out both; }
+.question-workshop[data-paused="true"] *, .question-workshop[data-resting="true"] * { animation-play-state: paused !important; }
+:root[data-theme="light"] .workshop-halo { background: radial-gradient(ellipse, rgb(193 18 31 / .09), transparent 70%); }
+:root[data-theme="light"] .question-shadow { stroke: #5e3423; opacity: .1; }
+:root[data-theme="light"] .question-tube { filter: none; stroke-width: 9; }
+:root[data-theme="light"] .question-core { stroke: #faf9f6; stroke-width: 2; }
+:root[data-theme="light"] .workshop-idea { stroke: #8b4d15; }
+@keyframes workshop-signal { from { stroke-dashoffset: 107; } to { stroke-dashoffset: 7; } }
+@keyframes workshop-breathe { from { opacity: .55; transform: scale(.95); } to { opacity: 1; transform: scale(1.04); } }
+@keyframes workshop-idea { 0%, 65%, 100% { opacity: .25; } 78%, 88% { opacity: 1; } }
+@keyframes workshop-warmup { from { opacity: .25; } to { opacity: 1; } }
+@keyframes workshop-thought { from { transform: translateY(8px); } to { transform: translateY(0); } }
+@media(max-width: 700px) {
+  .curiosity-stage { grid-template-columns: 1fr; gap: 10px; }
+  .question-workshop { width: min(100%, 340px); justify-self: center; }
+  .workshop-halo { inset: 0; }
+  .curiosity-title h1 { font-size: clamp(74px, 16vw, 110px); }
+}
+@media(prefers-reduced-motion: reduce) {
+  .question-workshop *, .curiosity-title h1 em, .curiosity-intro { animation: none !important; }
+  .workshop-signal { stroke-dasharray: none; opacity: .4; }
+  :root[data-interactive="true"] .workshop-pause.js-only { display: none !important; }
+}
+:root:not([data-interactive="true"]) .question-workshop * { animation: none !important; }
+
+/* Broad editorial bands and compact newspaper front pages. */
+.home-page { --foreground: 245 245 245; --muted: 185 185 185; --background: 8 8 8; --contrast: 255 255 255; }
+:root[data-theme="light"] .home-page { --foreground: 12 12 12; --muted: 78 78 78; --background: 255 255 255; --contrast: 0 0 0; }
+.curiosity-opening { background: rgb(var(--background)); box-shadow: 0 0 0 100vmax rgb(var(--background)); clip-path: inset(0 -100vmax); padding-top: 24px; padding-bottom: 55px; }
+.curiosity-stage { grid-template-columns: 1.2fr 1fr; gap: 48px; padding: 36px 0; }
+.curiosity-title h1 { font-family: 'Times New Roman', Georgia, serif; font-weight: 400; font-size: clamp(64px, 8vw, 100px); line-height: .88; letter-spacing: -.065em; text-transform: uppercase; }
+.curiosity-title h1 em { font-style: normal; margin-top: 10px; }
+.margin-note { font-size: 16px; margin-bottom: 24px; }
+.question-workshop { width: 100%; max-width: 310px; justify-self: center; border-left: 1px solid rgb(var(--contrast) / .25); padding-left: 28px; }
+.question-core { stroke: #fff; }
+.workshop-idea, :root[data-theme="light"] .workshop-idea { stroke: #c1121f; }
+:root[data-theme="light"] .question-core { stroke: #fff; }
+:root[data-theme="light"] .question-shadow { stroke: #000; }
+.curiosity-intro { gap: 48px; }
+.curiosity-invitation { font-size: 28px; }
+.latest-writing { padding: 58px 0 64px; background: #080808; color: #fff; box-shadow: 0 0 0 100vmax #080808; clip-path: inset(0 -100vmax); }
+.latest-writing .section-heading { border-color: #555; margin-bottom: 28px; }
+.latest-writing .section-heading h2 { font: 400 clamp(38px, 5vw, 62px)/1 'Times New Roman', Georgia, serif; text-transform: uppercase; letter-spacing: -.055em; margin-top: 14px; }
+.edition-label { font: 12px/1.5 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #ccc; }
+.newspaper-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.newspaper-card { display: flex; flex-direction: column; min-width: 0; padding: 21px; border: 1px solid #111; outline: 1px solid #fff; outline-offset: 4px; background: #fff; color: #111; box-shadow: 5px 6px 0 #444; }
+.newspaper-masthead { font: bold 25px/1.1 'Times New Roman', Georgia, serif; text-align: center; letter-spacing: -.065em; border-bottom: 3px double #111; padding-bottom: 10px; }
+.newspaper-edition { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 12px; border-bottom: 1px solid #111; padding: 7px 0; font: 10px/1.5 Inter, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+.newspaper-kicker { font: 11px/1.5 Inter, sans-serif; color: #a00e19; text-transform: uppercase; letter-spacing: .09em; margin: 19px 0 9px; }
+.newspaper-card h3 { font: bold clamp(27px, 2.5vw, 34px)/1.02 'Times New Roman', Georgia, serif; letter-spacing: -.045em; margin-bottom: 13px; }
+.newspaper-card h3 a { text-decoration-color: #c1121f; }
+.newspaper-deck { font: italic 17px/1.35 Georgia, serif; border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 11px 0; margin-bottom: 14px; }
+.newspaper-excerpt { font: 16px/1.6 Georgia, serif; margin-bottom: 20px; }
+.newspaper-excerpt::first-letter { float: left; font-size: 44px; line-height: .9; padding: 7px 5px 0 0; font-weight: bold; }
+.newspaper-byline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: auto; padding: 10px 0; border-top: 1px solid #111; font: 11px/1.5 Inter, sans-serif; }
+.newspaper-read { display: flex; justify-content: space-between; align-items: center; min-height: 44px; border-top: 3px double #111; font-size: 13px; color: #a00e19; }
+.newspaper-card a:focus-visible { outline: 2px solid #c1121f; outline-offset: 3px; }
+.inquiry-about { max-width: none; margin-top: 0; padding: 56px 0; border: 0; color: #fff; background: #c1121f; box-shadow: 0 0 0 100vmax #c1121f; clip-path: inset(0 -100vmax); }
+.inquiry-about .eyebrow, .inquiry-about p:not(.eyebrow), .inquiry-about .read-link { color: #fff; }
+.inquiry-about .eyebrow::before { background: #fff; }
+.inquiry-about h2 { font: 400 clamp(36px, 5vw, 62px)/1 'Times New Roman', Georgia, serif; text-transform: uppercase; letter-spacing: -.045em; max-width: 780px; margin: 22px 0; }
+.inquiry-about p:not(.eyebrow) { max-width: 700px; font-size: 17px; }
+@media(max-width: 900px) { .newspaper-grid { gap: 18px; } .newspaper-card { padding: 16px; } .newspaper-masthead { font-size: 23px; } }
+@media(max-width: 700px) {
+ .curiosity-stage { grid-template-columns: 1fr; gap: 24px; }
+ .curiosity-title h1 { font-size: clamp(64px, 14vw, 90px); }
+ .question-workshop { width: 230px; border-left: 0; padding-left: 0; }
+ .curiosity-intro { gap: 20px; }
+ .newspaper-grid { grid-template-columns: 1fr; gap: 30px; max-width: 450px; margin: auto; }
+ .newspaper-card { padding: 24px; }
+ .newspaper-card h3 { font-size: 34px; }
+ .newspaper-masthead { font-size: 30px; }
+ .latest-writing { padding: 40px 0 48px; }
+ .inquiry-about { padding: 40px 0; }
+}
