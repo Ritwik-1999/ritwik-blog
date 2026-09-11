@@ -11,7 +11,7 @@ export default function Home({ posts = [] }) {
   const recent = published.filter(post => post.question && post.path !== featured?.path).slice(0, 2)
   return <main id="main-content" tabIndex={-1} className="home-page">
     <section className="curiosity-opening" aria-labelledby="opening-question">
-      <div className="curiosity-masthead"><p>Ritwik’s corner of the internet</p><span>For the incurably curious.</span></div>
+      <div className="curiosity-masthead"><span>For the incurably curious.</span></div>
       <div className="curiosity-stage">
         <div className="curiosity-title"><p className="margin-note">A perfectly reasonable place to overthink.</p><h1 id="opening-question">It works.<br /><em>But why?</em></h1></div>
         <div className="curiosity-mark" aria-hidden="true"><span className="orbit orbit-one" /><span className="orbit orbit-two" /><span className="giant-question">?</span><span className="mark-note">keep pulling<br />at the thread ↗</span></div>

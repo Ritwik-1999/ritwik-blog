@@ -1,7 +1,10 @@
 import { useState } from 'react'
-const service = import.meta.env.VITE_EMAILJS_SERVICE
-const template = import.meta.env.VITE_EMAILJS_TEMPLATE
-const publicKey = import.meta.env.VITE_EMAILJS_KEY
+import contactConfig from '../../contact.config.json'
+
+// These identifiers are public in the browser bundle; never put private keys here.
+const service = import.meta.env.VITE_EMAILJS_SERVICE?.trim() || contactConfig.service
+const template = import.meta.env.VITE_EMAILJS_TEMPLATE?.trim() || contactConfig.template
+const publicKey = import.meta.env.VITE_EMAILJS_KEY?.trim() || contactConfig.publicKey
 
 export default function Contact() {
   const [fields, setFields] = useState({ name: '', email: '', message: '' })

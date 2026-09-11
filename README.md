@@ -71,7 +71,7 @@ The initial HTML includes the selected article and its metadata, even without Ja
 
 RSS is at `/feed.xml`. The feed includes finished articles only. Related articles are selected from finished posts sharing a category or topic. Copy-link feedback and form statuses are announced to assistive technology.
 
-EmailJS retains the existing `VITE_EMAILJS_SERVICE`, `VITE_EMAILJS_TEMPLATE`, and `VITE_EMAILJS_KEY` configuration. The form appears when configured; direct email and LinkedIn links are always available. The email SDK loads only on submission. Tests must not send real messages.
+EmailJS uses the browser-public service ID, template ID, and public key in `src/contact.config.json`, so deployments do not depend on the ignored `.env.local` file. Include this configuration file when committing changes. Never put an EmailJS private key in it. Optional `VITE_EMAILJS_SERVICE`, `VITE_EMAILJS_TEMPLATE`, and `VITE_EMAILJS_KEY` build variables override these defaults; blank values use the defaults. Direct email and LinkedIn links are always available. The email SDK loads only on submission. Tests must not send real messages.
 
 ## A sustainable publishing routine
 
