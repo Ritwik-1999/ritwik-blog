@@ -507,7 +507,7 @@ a:hover { text-decoration: underline; }
 :root[data-theme="light"] { --background: 255 255 255; --foreground: 12 12 12; --muted: 78 78 78; --surface: 248 248 248; }
 .editorial-opening { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center; padding: 40px 0 44px; }
 .editorial-opening .edition-label { color: rgb(var(--muted)); font-size: 12px; }
-.editorial-opening h1 { font: 400 clamp(60px, 7.5vw, 92px)/.92 'Times New Roman', Georgia, serif; text-transform: uppercase; letter-spacing: -.065em; margin-top: 20px; }
+.editorial-opening h1 { font: 650 clamp(60px, 7.5vw, 92px)/1.02 Inter, Arial, sans-serif; text-transform: none; letter-spacing: -.055em; margin-top: 20px; }
 .editorial-opening h1 em { font-style: normal; color: #c1121f; }
 .editorial-welcome { border-left: 1px solid rgb(var(--contrast) / .25); padding-left: 32px; }
 .editorial-welcome p { font-size: 17px; line-height: 1.7; color: rgb(var(--muted)); }

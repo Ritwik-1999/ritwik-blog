@@ -6,7 +6,7 @@ date: "2026-09-10"
 category: "Engineering"
 topics: ["Agentic AI", "Production systems", "Human judgment"]
 status: "published"
-featured: true
+featured: false
 openingQuestion: "When AI can act,\nwhat should we let it decide?"
 openingDescription: "AI agents can move from suggesting an action to taking it. What should they be trusted to do—and when should a person step in?"
 ---

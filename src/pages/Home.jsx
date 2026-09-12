@@ -4,7 +4,8 @@ import NewspaperCard from '../components/blog/NewspaperCard'
 export default function Home({ posts = [] }) {
   const published = posts.filter(post => !post.status || post.status === 'published')
   const featured = published.find(post => post.featured) || published[0]
-  const recent = published.filter(post => post.path !== featured?.path).slice(0, 2)
+  const recent = published.filter(post => post.path !== featured?.path)
+    .sort((a, b) => Number(Boolean(b.homepage)) - Number(Boolean(a.homepage))).slice(0, 2)
   return <main id="main-content" tabIndex={-1} className="home-page editorial-home">
     <section className="editorial-opening" aria-labelledby="opening-question">
       <div><p className="edition-label">Essays & field notes · Ritwik Reddy</p><h1 id="opening-question">It works.<br /><em>But why?</em></h1></div>
