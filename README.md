@@ -77,6 +77,6 @@ EmailJS uses the browser-public service ID, template ID, and public key in `src/
 
 Finish a few strong articles before featuring them. Explain a concrete problem, your approach, tradeoffs, evidence, and lessons; cite sources and distinguish personal observations from general claims. A short article is fine when it fully answers its question.
 
-After publishing, share a useful summary on LinkedIn with the permanent article URL. Submit `/sitemap.xml` in your existing Google Search Console account. Review article visits, search referrals, and contact actions using your hosting analytics. No analytics account or tracking service has been connected by this change.
+After publishing, share a useful summary on LinkedIn with the permanent article URL. Submit `/sitemap.xml` in your existing Google Search Console account. Google Analytics 4 is configured for `G-7YD89MH3ZP`, with visitor consent and production-domain restrictions. See [ANALYTICS.md](ANALYTICS.md) for the required stream setting, verification after you push, and reports for page views, engagement time, reading progress, and contact actions.
 
 Revisit search when the archive reaches roughly 15–20 posts. Email subscriptions, a browser editor, comments, and user accounts are intentionally deferred until needed; RSS works now without account setup.

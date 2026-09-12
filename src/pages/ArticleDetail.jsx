@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import FollowWriting from '../components/blog/FollowWriting'
 import PostCard from '../components/blog/PostCard'
+import { trackEvent } from '../lib/analytics'
 export default function ArticleDetail({ post, related = [], url }) {
   const [copyStatus, setCopyStatus] = useState('')
   const [fallback, setFallback] = useState(false)
   async function copyLink() {
-    try { await navigator.clipboard.writeText(url || `${location.origin}${post.path}`); setCopyStatus('Link copied.'); setFallback(false) }
+    try { await navigator.clipboard.writeText(url || `${location.origin}${post.path}`); setCopyStatus('Link copied.'); setFallback(false); trackEvent('article_share') }
     catch { setCopyStatus('Select and copy the link below.'); setFallback(true) }
   }
   const showContents = post.headings.length >= 3

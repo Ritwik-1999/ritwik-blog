@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import contactConfig from '../../contact.config.json'
+import { trackEvent } from '../../lib/analytics'
 
 // These identifiers are public in the browser bundle; never put private keys here.
 const service = import.meta.env.VITE_EMAILJS_SERVICE?.trim() || contactConfig.service
@@ -17,6 +18,7 @@ export default function Contact() {
     try {
       const { default: emailjs } = await import('@emailjs/browser')
       await emailjs.send(service, template, { ...fields, title: fields.name, time: new Date().toLocaleString() }, publicKey)
+      trackEvent('contact_sent')
       setFields({ name: '', email: '', message: '' }); setStatus('sent')
     } catch { setStatus('error') }
   }
