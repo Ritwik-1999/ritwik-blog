@@ -1,7 +1,7 @@
 ---
-title: "What If an AI Agent Could Learn How to Search?"
+title: "Recursive Self-Learning in AI Agents: What Dream-RSI Changes"
 slug: "dream-rsi-learning-how-to-search"
-description: "Dream-RSI turns past experiments into a replayable training ground for better exploration. What the research proves, where it falls short, and why agent builders should pay attention."
+description: "An analysis of recursive self-learning in AI agents through Dream-RSI: how replay improves exploration, what the results show, and where self-improvement falls short."
 date: "2026-09-18"
 category: "Engineering"
 topics: ["Agentic AI", "Recursive self-improvement", "Research"]
@@ -25,6 +25,10 @@ The phrase *recursive self-improvement* invites enormous expectations. Here, its
 That scope makes the research useful. It identifies a part of agent performance that engineers can isolate, measure, and improve: **how an agent allocates effort when the answer is not yet known.**
 
 ## Inside the research: learning how to explore
+
+### What does recursive self-learning mean here?
+
+In this article, *recursive self-learning* means a feedback loop where experience improves the process used to gather the next round of experience. The paper's more precise term is *recursive self-improvement*: Dream-RSI changes its exploration policy, rather than retraining its underlying model. It is also different from asking a model to critique an answer repeatedly; the revisions are evaluated against recorded experimental outcomes.
 
 ### A capable worker still needs a good strategy
 
