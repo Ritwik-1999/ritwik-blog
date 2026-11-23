@@ -629,3 +629,24 @@ a:hover { text-decoration: underline; }
 .chess-posts { display: grid; gap: 44px; padding-top: 42px; }
 @media(max-width: 1000px) { .chess-opening { grid-template-columns: 1fr; } .chess-square { font-size: clamp(24px, 5vw, 42px); } }
 @media(max-width: 650px) { .chess-page { grid-template-columns: 1fr; } .chess-rail { padding: 28px 24px; gap: 32px; } .chess-rail h1 br { display: none; } .chess-rail h1 { font-size: 48px; } .chess-rail nav { flex-direction: row; gap: 28px; } .chess-main { padding: 40px 24px; } .chess-opening { padding: 0 0 48px; } .chess-square { font-size: clamp(24px, 7vw, 42px); } }
+
+.opening-explorer { max-width: 460px; }
+.board-instructions { font-size: 14px; line-height: 1.6; color: #bcbcb7; margin-bottom: 16px; }
+.opening-explorer .chess-square { position: relative; border: 0; padding: 0; cursor: pointer; touch-action: manipulation; }
+.chess-square small { position: absolute; bottom: 2px; left: 3px; font: 10px/1 sans-serif; color: #251b12; text-shadow: none; -webkit-text-stroke: 0; }
+.chess-square.square-last { box-shadow: inset 0 0 0 3px #f9edb677; }
+.chess-square.square-selected { box-shadow: inset 0 0 0 4px #fff4be; }
+.chess-square.square-legal::after { content: ''; position: absolute; width: 25%; height: 25%; border-radius: 50%; background: #19120b70; border: 2px solid #fff9; pointer-events: none; }
+.opening-explorer .chess-square:focus-visible { outline: 3px solid white; outline-offset: -3px; z-index: 1; }
+.board-controls, .board-promotion { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.board-controls button, .board-promotion button { padding: 10px 14px; min-height: 44px; border: 1px solid #ffffff40; font-size: 14px; }
+.board-controls button:disabled { opacity: .4; cursor: not-allowed; }
+.opening-trivia { margin-top: 24px; padding: 22px; background: #ffffff08; }
+.opening-trivia h3 { font: 400 25px/1.2 Georgia, serif; margin: 12px 0; }
+.opening-trivia p { font-size: 15px; line-height: 1.7; color: #cecec8; }
+.opening-trivia .board-status { color: #fff; margin-bottom: 16px; }
+.opening-trivia .board-note { font-size: 13px; margin-top: 14px; }
+.opening-trivia a { display: inline-block; margin-top: 16px; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.board-history { margin-top: 16px; font-size: 14px; line-height: 1.8; }
+.board-history summary { cursor: pointer; padding: 8px 0; }
+.board-history p { overflow-wrap: anywhere; color: #cecec8; }

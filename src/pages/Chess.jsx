@@ -1,17 +1,4 @@
-const backRank = ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜']
-
-function Chessboard() {
-  return <figure className="chess-board-figure">
-    <div className="chess-board" role="img" aria-label="A wooden chessboard in the starting position, with White at the bottom">
-      {Array.from({ length: 64 }, (_, index) => {
-        const rank = Math.floor(index / 8), file = index % 8
-        const piece = rank === 0 || rank === 7 ? backRank[file] : rank === 1 || rank === 6 ? '♟' : ''
-        return <span aria-hidden="true" key={index} className={`chess-square ${(rank + file) % 2 ? 'wood-dark' : 'wood-light'} ${rank > 5 ? 'white-piece' : 'black-piece'}`}>{piece}</span>
-      })}
-    </div>
-    <figcaption>Sixty-four squares. A world of possibilities.</figcaption>
-  </figure>
-}
+import OpeningBoard from '../components/chess/OpeningBoard'
 
 export default function Chess({ posts = [] }) {
   return <main id="main-content" tabIndex={-1} className="chess-page">
@@ -23,7 +10,7 @@ export default function Chess({ posts = [] }) {
     <div className="chess-main">
       <section className="chess-opening" aria-labelledby="chess-intro">
         <div className="chess-opening-copy"><p className="chess-label">A different kind of thinking</p><h2 id="chess-intro">Every move<br />asks a question.</h2><p>Notes on chess news, world championships, and the ideas that make us look at the board again.</p></div>
-        <Chessboard />
+        <OpeningBoard />
       </section>
       <section id="chess-writing" className="chess-writing" aria-labelledby="chess-writing-heading">
         <div className="chess-writing-heading"><h2 id="chess-writing-heading">From the chess desk</h2><span>{posts.length} {posts.length === 1 ? 'article' : 'articles'}</span></div>
