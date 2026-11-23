@@ -9,6 +9,7 @@ const pages = {
   home: () => import('./pages/Home'),
   work: () => import('./pages/Work'),
   blog: () => import('./pages/Blog'),
+  chess: () => import('./pages/Chess'),
   article: () => import('./pages/ArticleDetail'),
   notfound: () => import('./pages/NotFound'),
 }

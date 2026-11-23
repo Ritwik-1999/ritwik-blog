@@ -1,6 +1,6 @@
 import FollowWriting from '../components/blog/FollowWriting'
 export default function Blog({ posts, category, previews, previewCount }) {
-  const tabs = [['All articles', '/blog', !category && !previews], ['Engineering', '/blog/engineering', category === 'Engineering'], ['Reflections', '/blog/reflections', category === 'Reflections']]
+  const tabs = [['All articles', '/blog', !category && !previews], ['Engineering', '/blog/engineering', category === 'Engineering'], ['Reflections', '/blog/reflections', category === 'Reflections'], ['Chess', '/chess', false]]
   return <main id="main-content" tabIndex={-1} className="blog-page editorial-archive">
     <header className="archive-masthead"><div className="archive-imprint"><span>Ritwik Reddy · Independent writing</span><a href="/feed.xml">Follow via RSS ↗</a></div><h1>{previews ? 'The notebook.' : 'The reading room.'}</h1><p>{previews ? 'Early ideas and unfinished articles, shared as they develop.' : 'Essays on AI, engineering, and the assumptions worth examining.'}</p></header>
     <nav className="category-nav" aria-label="Writing categories">{tabs.map(([label, href, active]) => <a key={href} href={href} aria-current={active ? 'page' : undefined}>{label}</a>)}</nav>

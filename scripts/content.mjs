@@ -52,7 +52,7 @@ export function readPosts(directory = path.resolve('content/posts')) {
     }
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(data.slug) || slugs.has(data.slug)) throw new Error(`${file}: invalid or duplicate slug`)
     slugs.add(data.slug)
-    if (!['Engineering', 'Reflections'].includes(data.category)) throw new Error(`${file}: invalid category`)
+    if (!['Engineering', 'Reflections', 'Chess'].includes(data.category)) throw new Error(`${file}: invalid category`)
     if (!['draft', 'preview', 'published'].includes(data.status)) throw new Error(`${file}: invalid status`)
     if (!Array.isArray(data.topics) || !data.topics.length || data.topics.some(t => typeof t !== 'string' || !t.trim())) throw new Error(`${file}: topics must be a non-empty list`)
     for (const key of ['date', 'updated']) {
@@ -63,17 +63,18 @@ export function readPosts(directory = path.resolve('content/posts')) {
     if (data.updated && data.updated < data.date) throw new Error(`${file}: updated date precedes publication`)
     if (data.featured && data.status !== 'published') throw new Error(`${file}: only published articles may be featured`)
     if (data.image && !/^\/[^/]/.test(data.image)) throw new Error(`${file}: social image must be a local /public-path`)
-    return { ...data, ...compileMarkdown(content), path: `/${data.category === 'Engineering' ? 'notes' : 'reflections'}/${data.slug}`, displayDate: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', ...(data.date.length === 10 ? { day: 'numeric' } : {}), timeZone: 'UTC' }).format(new Date(data.date.length === 7 ? `${data.date}-01` : data.date)) }
+    return { ...data, ...compileMarkdown(content), path: `/${data.category === 'Engineering' ? 'notes' : data.category === 'Chess' ? 'chess' : 'reflections'}/${data.slug}`, displayDate: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', ...(data.date.length === 10 ? { day: 'numeric' } : {}), timeZone: 'UTC' }).format(new Date(data.date.length === 7 ? `${data.date}-01` : data.date)) }
   }).filter(post => post.status !== 'draft').sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug))
 }
 export function summarize(post) {
   const { html: _html, headings: _headings, links: _links, images: _images, ...summary } = post
   return summary
 }
-export const archiveRoutes = ['/', '/work', '/blog', '/blog/engineering', '/blog/reflections', '/blog/previews']
+export const archiveRoutes = ['/', '/work', '/chess', '/blog', '/blog/engineering', '/blog/reflections', '/blog/previews']
 export function pageData(url, posts) {
   const pathname = new URL(url, 'http://localhost').pathname.replace(/\/$/, '') || '/'
   const published = posts.filter(p => p.status === 'published')
+  if (pathname === '/chess') return { kind: 'chess', pathname, posts: published.filter(p => p.category === 'Chess').map(summarize), title: 'Chess · Ritwik Reddy', description: 'Chess writing by Ritwik Reddy: news, world championships, and the ideas behind the moves.' }
   if (pathname === '/work') return { kind: 'work', pathname, title: 'Engineering work · Ritwik Reddy', description: 'Selected cloud infrastructure, automation, and platform reliability work by Sai Ritwik Reddy.' }
   if (pathname === '/') return { kind: 'home', pathname, posts: published.map(summarize), title: 'Ritwik Reddy · Engineering & writing', description: 'Engineering notes, reflections, and selected work by Sai Ritwik Reddy. Cloud infrastructure, automation, and reliable systems.' }
   if (archiveRoutes.includes(pathname)) {

@@ -71,3 +71,21 @@ test('initial HTML contains article-specific canonical, social and structured me
   assert.match(document, /<main>Article body<\/main>/)
   assert.doesNotMatch(document, /datePublished/)
 })
+
+test('Chess has its own archive, article routes, and published-only discovery', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'chess-content-'))
+  try {
+    const sample = fs.readFileSync('content/posts/terraform-drift.md', 'utf8').replace('category: "Engineering"', 'category: "Chess"')
+    fs.writeFileSync(path.join(directory, 'chess.md'), sample)
+    const posts = readPosts(directory)
+    assert.equal(posts[0].path, '/chess/terraform-drift')
+    assert.equal(pageData('/chess', posts).kind, 'chess')
+    assert.equal(pageData('/chess', posts).posts.length, 1)
+    assert.equal(pageData('/chess/terraform-drift', posts).kind, 'article')
+    assert.equal(pageData('/chess', [{ ...posts[0], status: 'preview' }]).posts.length, 0)
+    assert.match(sitemap(posts, 'https://example.com'), /<loc>https:\/\/example.com\/chess<\/loc>/)
+    validateLinks(posts)
+  } finally {
+    fs.rmSync(directory, { recursive: true })
+  }
+})
