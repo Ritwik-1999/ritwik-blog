@@ -4,7 +4,7 @@ export default function Chess({ posts = [] }) {
   return <main id="main-content" tabIndex={-1} className="chess-page">
     <aside className="chess-rail">
       <a className="chess-back" href="/blog">The reading room</a>
-      <div><img className="chess-rail-art" src="/images/chess-editorial-v2.webp" alt="A crimson hand lifting a knight, with abstract painted patterns across sculptural chess pieces" width="720" height="720" decoding="async" /><p className="chess-label">Ritwik Reddy / Chess</p><h1>Beyond <br />the board.</h1><p>The moves. The minds.<br />The moments that matter.</p></div>
+      <div className="chess-rail-intro"><img className="chess-rail-art" src="/images/chess-editorial-v3.webp" alt="A crimson hand suspending a pawn above a sweeping sculptural knight and slender queen" width="720" height="720" decoding="async" /><p className="chess-label">Ritwik Reddy / Chess</p><h1>Beyond <br />the board.</h1><p>The moves. The minds.<br />The moments that matter.</p></div>
       <nav aria-label="Chess page"><a href="#chess-writing">The writing</a><a href="/feed.xml">Follow via RSS</a></nav>
     </aside>
     <div className="chess-main">

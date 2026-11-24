@@ -714,8 +714,12 @@ a:hover { text-decoration: underline; }
 @media(max-width: 650px) { .chess-posts { grid-template-columns: 1fr; gap: 22px; } }
 
 /* Quiet, consistent article cards. */
-.chess-rail-art { display: block; width: 100%; max-width: 280px; height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto 26px; }
-@media (max-width: 650px) { .chess-rail-art { max-width: 220px; margin-inline: 0; } }
+.chess-rail { justify-content: flex-start; gap: 20px; }
+.chess-rail-intro { min-width: 0; }
+.chess-rail nav { margin-top: auto; padding-top: 28px; }
+.chess-rail-art { display: block; width: calc(100% + 36px); max-width: 360px; height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 -18px 12px; }
+.chess-rail h1 { margin-top: 14px; }
+@media (max-width: 650px) { .chess-rail-art { width: 100%; max-width: 300px; margin-inline: 0; } }
 .chess-posts { gap: 18px; border: 0; }
 .chess-posts article { --tile-bg: #161616; --tile-ink: #f7f7f3; --tile-muted: #c0c0ba; position: relative; background: var(--tile-bg); color: var(--tile-ink); border: 1px solid #ffffff18; border-radius: 3px; padding: clamp(20px, 2.2vw, 32px); min-width: 0; }
 .chess-posts .chess-label { color: var(--tile-muted); font-size: 11px; line-height: 1.7; letter-spacing: .045em; }
