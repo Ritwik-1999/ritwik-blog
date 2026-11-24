@@ -11,7 +11,8 @@ export default function ArticleDetail({ post, related = [], url }) {
   }
   const showContents = post.headings.length >= 3
   return <main id="main-content" tabIndex={-1} className="article-page">
-    <a className="read-link" href="/blog">← All writing</a>
+    <a className="read-link" href={post.category === "Chess" ? "/chess" : "/blog"}>{post.category === "Chess" ? "Back to the chess desk" : "← All writing"}</a>
+    {post.sample && <p className="article-notice">Sample article · An introductory opening guide.</p>}
     <article><header className="article-header"><p className="eyebrow">{post.category} / {post.topics.join(' · ')}</p><h1>{post.title}</h1><p className="article-deck">{post.description}</p><div className="article-byline"><a href="/#about">Ritwik Reddy</a><time dateTime={post.date}>{post.displayDate}</time><span>{post.readTime}</span>{post.updated && <span>Updated <time dateTime={post.updated}>{post.updated}</time></span>}</div></header>
       {post.status === 'preview' && <p className="article-notice">This is a work in progress. The full article is coming soon.</p>}
       {showContents && <details className="article-contents"><summary>In this article</summary><nav aria-label="Article sections">{post.headings.map(h => <a key={h.id} className={h.level > 2 ? 'nested-heading' : undefined} href={`#${h.id}`}>{h.text}</a>)}</nav></details>}

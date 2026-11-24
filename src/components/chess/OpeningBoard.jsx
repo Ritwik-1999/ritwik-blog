@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Chess } from 'chess.js'
-import { openingFor } from '../../lib/chessOpenings'
+import { openingFor, articleFor } from '../../lib/chessOpenings'
 
 import ChessPiece from './ChessPiece'
 const names = { k: 'king', q: 'queen', r: 'rook', b: 'bishop', n: 'knight', p: 'pawn' }
 
-export default function OpeningBoard() {
+export default function OpeningBoard({ posts = [] }) {
   const [history, setHistory] = useState([])
   const [selected, setSelected] = useState(null)
   const [promotion, setPromotion] = useState(null)
@@ -14,6 +14,7 @@ export default function OpeningBoard() {
   history.forEach(move => game.move(move))
   const legal = selected ? game.moves({ square: selected, verbose: true }) : []
   const opening = openingFor(history)
+  const relatedArticle = articleFor(history, posts)
   const turn = game.turn() === 'w' ? 'White' : 'Black'
   const status = game.isCheckmate() ? `Checkmate. ${turn} is checkmated.` : game.isDraw() ? 'Draw. Undo or reset to explore another line.' : `${turn} to move${game.isCheck() ? ' — check' : ''}.`
 
@@ -47,7 +48,7 @@ export default function OpeningBoard() {
     </div>
     {promotion && <div className="board-promotion" role="group" aria-label="Choose promotion piece"><p>Promote to:</p>{['q', 'r', 'b', 'n'].map(piece => <button key={piece} onClick={() => play(promotion.from, promotion.to, piece)}>{names[piece]}</button>)}<button onClick={() => setPromotion(null)}>Cancel</button></div>}
     <div className="board-controls"><button disabled={!history.length} onClick={() => restore(history.slice(0, -1))}>Undo</button><button disabled={!history.length} onClick={() => restore([])}>Reset board</button></div></div>
-    <div aria-live="polite" aria-atomic="true" className="opening-trivia"><p className="board-status">{status} {message}</p><p className="chess-label">{history.length ? `After ${last?.san}` : 'Opening explorer'}</p><h3>{opening ? opening.name : history.length ? 'An uncharted opening' : 'Make the first move.'}</h3><p>{opening ? opening.fact : history.length ? 'This move order is outside our small opening collection. Try undoing and exploring e4, d4, c4, or Nf3.' : 'Try e4 or d4 to discover the ideas behind familiar openings.'}</p>{opening && history.length > opening.moves.length && <p className="board-note">Last recognized line: {opening.moves.join(' ')}. This continuation is not yet covered by our trivia collection.</p>}{opening && <a href={opening.source}>Browse the Lichess opening reference</a>}</div>
+    <div aria-live="polite" aria-atomic="true" className="opening-trivia"><p className="board-status">{status} {message}</p><p className="chess-label">{history.length ? `After ${last?.san}` : 'Opening explorer'}</p><h3>{opening ? opening.name : history.length ? 'An uncharted opening' : 'Make the first move.'}</h3><p>{opening ? opening.fact : history.length ? 'This move order is outside our small opening collection. Try undoing and exploring e4, d4, c4, or Nf3.' : 'Try e4 or d4 to discover the ideas behind familiar openings.'}</p>{opening && history.length > opening.moves.length && <p className="board-note">Last recognized line: {opening.moves.join(' ')}. This continuation is not yet covered by our trivia collection.</p>}{relatedArticle && <div className="opening-article"><p className="chess-label">Read the story behind the opening</p><a href={relatedArticle.path}>{relatedArticle.title}</a><span>{relatedArticle.readTime}{relatedArticle.sample ? " · Sample article" : ""}</span></div>}{opening && <a href={opening.source}>Browse the Lichess opening reference</a>}</div>
     {history.length > 0 && <details className="board-history"><summary>Move history</summary><p>{history.map((move, i) => `${i % 2 === 0 ? `${Math.floor(i / 2) + 1}. ` : ''}${move}`).join(' ')}</p></details>}
     <noscript>Enable JavaScript to move pieces and explore openings.</noscript>
   </div>

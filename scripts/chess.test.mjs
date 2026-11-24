@@ -33,3 +33,27 @@ test('board engine rejects illegal moves and retains castling, en passant, promo
   for (const move of ['f3','e5','g4','Qh4#']) game.move(move)
   assert.equal(game.isCheckmate(), true)
 })
+import { readPosts, pageData } from './content.mjs'
+import { articleFor } from '../src/lib/chessOpenings.js'
+
+test('six opening articles resolve to real pages and recommendations follow undo/reset', () => {
+  const posts = readPosts()
+  const lines = [
+    ['d4 d5 c4', 'queens-gambit'], ['e4 e5 f4', 'kings-gambit'],
+    ['e4 e5 Nf3 Nc6 Bb5', 'ruy-lopez'], ['e4 c5', 'sicilian-defense'],
+    ['e4 d5', 'scandinavian-defense'], ['e4 e5 Nf3 Nc6 Bc4', 'italian-game'],
+  ]
+  for (const [line, slug] of lines) {
+    const history = line.split(' ')
+    const post = articleFor(history, posts)
+    assert.equal(post.slug, slug)
+    assert.equal(pageData(post.path, posts).kind, 'article')
+    assert.equal(articleFor(history.slice(0, -1), posts), null)
+    assert.equal(articleFor(history, [{ ...post, status: 'draft' }]), null)
+    assert.equal(articleFor(history, [{ ...post, status: 'preview' }]), null)
+  }
+  assert.equal(articleFor(['d4','d5','c4','e6'], posts).slug, 'queens-gambit')
+  assert.equal(articleFor(['d4','d5','c4','c6'], posts).slug, 'queens-gambit')
+  assert.equal(articleFor([], posts), null)
+  assert.equal(articleFor(['a3'], posts), null)
+})

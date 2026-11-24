@@ -5,6 +5,7 @@ export const openings = [
   ['c4', 'English Opening', 'The c-pawn controls d5 from the flank, leaving the central pawns flexible.'],
   ['Nf3', 'Zukertort Opening', 'Developing a knight first keeps several central pawn structures available.'],
   ['e4 e5', 'Open Game', 'Both players claim central space; the knights can develop while attacking the opposing central pawns.'],
+  ['e4 e5 f4', 'King’s Gambit', 'White offers the f-pawn to challenge e5 and open the f-file, while exposing the king’s diagonal.'],
   ['e4 c5', 'Sicilian Defense', 'Black challenges d4 with the c-pawn, creating an asymmetric pawn structure from the first move.'],
   ['e4 e6', 'French Defense', 'The e6 pawn prepares d5, but also temporarily closes the diagonal of Black’s light-squared bishop.'],
   ['e4 c6', 'Caro-Kann Defense', 'The c6 pawn supports a future d5 advance while leaving the c8 bishop’s diagonal open.'],
@@ -23,4 +24,9 @@ export const openings = [
 
 export function openingFor(history) {
   return openings.filter(o => o.moves.length <= history.length && o.moves.every((move, i) => move === history[i])).sort((a, b) => b.moves.length - a.moves.length)[0] || null
+}
+
+export function articleFor(history, posts = []) {
+  return posts.filter(post => post.status === 'published' && post.category === 'Chess' && Array.isArray(post.openingMoves) && post.openingMoves.length > 0 && post.openingMoves.length <= history.length && post.openingMoves.every((move, i) => move === history[i]))
+    .sort((a, b) => b.openingMoves.length - a.openingMoves.length)[0] || null
 }
