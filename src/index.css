@@ -713,10 +713,9 @@ a:hover { text-decoration: underline; }
 @media(max-width: 1000px) { .chess-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .chess-main > .chess-opening .board-play-area { max-width: 300px; margin-inline: auto; } }
 @media(max-width: 650px) { .chess-posts { grid-template-columns: 1fr; gap: 22px; } }
 
-/* Alternating editorial tiles, with the checker pattern retained at each width. */
-.chess-posts { gap: 0; border: 1px solid #ffffff20; }
-.chess-posts article { --tile-bg: #161616; --tile-ink: #f7f7f3; --tile-muted: #c0c0ba; position: relative; background: var(--tile-bg); color: var(--tile-ink); padding: clamp(20px, 2.2vw, 32px); min-width: 0; }
-.chess-posts article:nth-child(odd) { --tile-bg: #fafaf7; --tile-ink: #191919; --tile-muted: #55554e; }
+/* Quiet, consistent article cards. */
+.chess-posts { gap: 18px; border: 0; }
+.chess-posts article { --tile-bg: #161616; --tile-ink: #f7f7f3; --tile-muted: #c0c0ba; position: relative; background: var(--tile-bg); color: var(--tile-ink); border: 1px solid #ffffff18; border-radius: 3px; padding: clamp(20px, 2.2vw, 32px); min-width: 0; }
 .chess-posts .chess-label { color: var(--tile-muted); font-size: 11px; line-height: 1.7; letter-spacing: .045em; }
 .chess-posts h3 { font-size: clamp(21px, 1.8vw, 27px); line-height: 1.2; margin: 14px 0 12px; }
 .chess-posts h3 a { color: var(--tile-ink); }
@@ -724,7 +723,4 @@ a:hover { text-decoration: underline; }
 .chess-posts article > p:not(.chess-label) { color: var(--tile-muted); font-size: 15px; line-height: 1.6; }
 .chess-posts article:hover h3 a { text-decoration: underline; text-underline-offset: 5px; }
 .chess-posts article:focus-within { outline: 3px solid #b78b61; outline-offset: -4px; z-index: 1; }
-@media(min-width: 651px) and (max-width: 1000px) {
- .chess-posts article:nth-child(odd) { --tile-bg: #161616; --tile-ink: #f7f7f3; --tile-muted: #c0c0ba; }
- .chess-posts article:nth-child(4n + 1), .chess-posts article:nth-child(4n + 4) { --tile-bg: #fafaf7; --tile-ink: #191919; --tile-muted: #55554e; }
-}
+
